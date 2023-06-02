@@ -1,8 +1,8 @@
 
 const COLORS = {
     null: 'gray',
-    '1': 'blue',
-    '-1': 'red'
+    '1': 'black',
+    '-1': 'white'
 }
 
 // const O = `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Letter_o.svg/1085px-Letter_o.svg.png">`
@@ -85,9 +85,11 @@ function handleChoice(e){
         turn = 1
         message.innerText = "Player One's turn"
         mark = O;
+        
     }
   console.log(choice, board[choice], board[choice].innerHTML, e.target, 'etear')
   e.target.innerHTML = mark;
+  turn === -1 ? e.target.style.color = 'white' : e.target.style.color = 'black'
   renderBoard()
   getWinner()
 }
