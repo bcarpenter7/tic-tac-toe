@@ -1,7 +1,7 @@
 
 const COLORS = {
     null: 'gray',
-    '1': 'black',
+    '1': '#282727',
     '-1': 'white'
 }
 
@@ -89,7 +89,7 @@ function handleChoice(e){
     }
   console.log(choice, board[choice], board[choice].innerHTML, e.target, 'etear')
   e.target.innerHTML = mark;
-  turn === -1 ? e.target.style.color = 'white' : e.target.style.color = 'black'
+  turn === -1 ? e.target.style.color = 'white' : e.target.style.color = '#282727'
   renderBoard()
   getWinner()
 }
