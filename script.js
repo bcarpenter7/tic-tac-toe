@@ -111,7 +111,7 @@ checkBoard(down2)
 checkBoard(down3)
 checkBoard(diaRight)
 checkBoard(diaLeft)
-if(board.indexOf(null) === -1){
+if(board.indexOf(null) === -1 && turn !== 0){
     message.innerText = 'Tie. Neither player wins :('
 }
 }
@@ -121,7 +121,6 @@ function checkBoard(direction){
     counter = 0;
     for(let i=0; i<direction.length; i++){
     counter += board[direction[i]]
-    console.log(counter, board[direction[i]])
     if(Math.abs(counter) === 3 ){
         // alert('Winner, winner')
         renderSuccess()
