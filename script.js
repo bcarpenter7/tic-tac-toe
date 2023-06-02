@@ -1,11 +1,14 @@
-console.log('hello')
-
 
 const COLORS = {
     null: 'gray',
     '1': 'blue',
     '-1': 'red'
 }
+
+// const O = `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Letter_o.svg/1085px-Letter_o.svg.png">`
+// const X = `<img src="https://static.vecteezy.com/system/resources/thumbnails/009/344/496/small/x-transparent-free-png.png"></img>`
+const O = 'O'
+const X = 'X'
 
 
 const across = [0, 1, 2]
@@ -16,13 +19,11 @@ const down2 = [1, 4, 7]
 const down3 = [2, 5, 8]
 const diaRight = [0, 4, 8]
 const diaLeft = [2, 4, 6]
-
-
-
 let board;
 let turn;
 let winner;
 let counter;
+let mark;
 
 
 /// Cached elemehnts
@@ -35,18 +36,14 @@ const squareSix = document.getElementById('6')
 const squareSeven = document.getElementById('7')
 const squareEight = document.getElementById('8')
 const squareNine = document.getElementById('9')
-
-
-
+const button = document.querySelector('button')
+const message = document.querySelector('h2')
 const squareArr = [squareOne, squareTwo, squareThree, squareFour, squareFive, squareSix, squareSeven, squareEight, squareNine]
 
 /// EVENT LISTENERS
 
 document.getElementById('board').addEventListener('click', handleChoice)
-
-
-
-
+button.addEventListener('click', init)
 
 
 /// Functions
@@ -55,15 +52,25 @@ init()
 function init(){
 board = 
     [null, null, null, null, null, null, null, null, null]
-
+mark = X;
 turn = 1;
-
+message.innerText = "Player One's turn!"
+squareOne.innerHTML = ''
+squareTwo.innerHTML = ''
+squareThree.innerHTML = ''
+squareFour.innerHTML = ''
+squareFive.innerHTML = ''
+squareSix.innerHTML = ''
+squareSeven.innerHTML = ''
+squareEight.innerHTML = ''
+squareNine.innerHTML = ''
 winner = null;
 renderBoard()
 }
 
 
 function handleChoice(e){
+    if(turn === 0) return
   let choice = e.target.id - 1
   // Guard for clicking on a null space
   if(board[choice] !== null){
@@ -71,11 +78,16 @@ function handleChoice(e){
   }
     board[choice] = turn
     if(turn === 1){
+        message.innerText = "Player Two's turn"
         turn = -1
+        mark = O;
     } else if (turn === -1){
         turn = 1
+        message.innerText = "Player One's turn"
+        mark = X;
     }
-  console.log(choice, board[choice])
+  console.log(choice, board[choice], board[choice].innerHTML, e.target, 'etear')
+  e.target.innerHTML = mark;
   renderBoard()
   getWinner()
 }
@@ -85,27 +97,43 @@ function renderBoard(){
         squareArr[i].style.backgroundColor = COLORS[board[i]]
         console.log(i)
     }
+    
 }
 
 function getWinner(){
-counter = 0;
-for(let i=0; i<across.length; i++){
-counter += board[across[i]]
-console.log(counter, board[across[i]])
-if(Math.abs(counter) === 3 ){
-    alert('Winner, winner')
-} 
+checkBoard(across)
+checkBoard(across2)
+checkBoard(across3)
+checkBoard(down)
+checkBoard(down2)
+checkBoard(down3)
+checkBoard(diaRight)
+checkBoard(diaLeft)
+if(board.indexOf(null) === -1){
+    message.innerText = 'Tie. Neither player wins :('
 }
-counter = 0;
+}
 
-for(let i=0; i<down.length; i++){
-    counter += board[down[i]]
-    console.log(counter, board[down[i]])
+
+function checkBoard(direction){
+    counter = 0;
+    for(let i=0; i<direction.length; i++){
+    counter += board[direction[i]]
+    console.log(counter, board[direction[i]])
     if(Math.abs(counter) === 3 ){
-        alert('Winner, winner')
-    } else if(i === down.length){
-        counter = 0;
+        // alert('Winner, winner')
+        renderSuccess()
+    } 
     }
-    }
+}
 
+
+function renderSuccess(){
+    if(turn === 1){
+    message.innerText = `Player Two wins!`
+    } else {
+        message.innerText = 'Player One wins!'
+    }
+    turn = 0
+    
 }

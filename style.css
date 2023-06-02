@@ -28,7 +28,22 @@ header {
     height: 200px;
     width: 200px;
     border: 1px solid white;
-
+    font-size: 15vmin;
+    text-align: center;
+    color: white;
 
 }
+
+button {
+    font-size: 20px;
+    padding: 5px;
+}
+
+
+img {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
 
