@@ -1,7 +1,7 @@
 * {
     margin: 0;
     display: border-box;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 #container {
@@ -12,31 +12,76 @@
 }
 
 header {
-    font-size: 5vmin;
+    font-size: 10vmin;
     text-align: center;
+    margin-top: 15vmin;
+}
+
+@media only screen and (min-width: 800px){
+    header{
+    font-size: 6vmin;
     margin-top: 5vmin;
+    }
+
 }
 
 #board {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
     grid-template-rows: 1fr 1fr 1fr;
+    margin-top: 5vmin;
+}
+
+@media only screen and (min-width: 800px){
+    #board{
+    margin-top: 0;
+    }
+
 }
 
 .box {
     background-color: gray;
-    height: 200px;
-    width: 200px;
+    height: 25vmin;
+    width: 25vmin;
     border: 1px solid white;
-    font-size: 15vmin;
+    font-size: 22vmin;
     text-align: center;
     color: white;
+}
 
+@media only screen and (min-width: 800px){
+    .box {
+    height: 20vmin;
+    width: 20vmin;
+    font-size: 18vmin;
+    }
+
+}
+
+.box:hover {
+    transform: scale(1.05)
 }
 
 button {
     font-size: 20px;
     padding: 5px;
+    margin-top: 5vmin;
+    color: gray;
+    background-color: white;
+    padding: 2vmin;
+    border-radius: 100px;
+}
+
+@media only screen and (min-width: 800px){
+    button{
+    margin-top: 0;
+    }
+
+}
+
+button:hover {
+    background-color: gray;
+    color: white;
 }
 
 
@@ -44,6 +89,18 @@ img {
     height: 100%;
     width: 100%;
     text-align: center;
+}
+
+h2 {
+    font-size: 5vmin;
+}
+
+@media only screen and (min-width: 800px){
+    h2 {
+    margin-top: -2vmin;
+    font-size: 4vmin;
+    }
+
 }
 
 
