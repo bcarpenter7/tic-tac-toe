@@ -52,7 +52,7 @@ init()
 function init(){
 board = 
     [null, null, null, null, null, null, null, null, null]
-mark = X;
+mark = O;
 turn = 1;
 message.innerText = "Player One's turn!"
 squareOne.innerHTML = ''
@@ -80,11 +80,11 @@ function handleChoice(e){
     if(turn === 1){
         message.innerText = "Player Two's turn"
         turn = -1
-        mark = O;
+        mark = X;
     } else if (turn === -1){
         turn = 1
         message.innerText = "Player One's turn"
-        mark = X;
+        mark = O;
     }
   console.log(choice, board[choice], board[choice].innerHTML, e.target, 'etear')
   e.target.innerHTML = mark;
